@@ -1,9 +1,14 @@
-# Advent of Code 2022
+# Advent of Code 2024
 
-Also in Rust!
+In Rust!
 
 ## Running Solutions
 
-Pass a command name and path to a data file.
+Pass a day and an option to run.
 
-Example: `cargo run -- calories data/calories.txt`
+Day is formatted like 01a or 01b, where a/b is for the first/second part.
+
+Option is ex or go for either running the example input or the actual input.
+
+Example: `cargo run -- 01a ex`
+Actual: `cargo run -- 01a go`

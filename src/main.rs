@@ -6,7 +6,7 @@ fn main() {
 
     let config = Config::new(args);
 
-    println!("running {}", config.command);
+    println!("running {}", config.day);
     println!("On file {}", config.file_path);
     let result = advent_of_code_2024::run(config);
     match result {
