@@ -1,0 +1,4 @@
+file  = { SOI ~ line* ~ EOI }
+line = { "Sensor at " ~ coords ~ ": closest beacon is at " ~ coords ~ (NEWLINE | EOI) } 
+coords = { "x=" ~ num ~ ", y=" ~ num }
+num = { "-"? ~ ASCII_DIGIT+ }
