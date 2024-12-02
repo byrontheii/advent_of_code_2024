@@ -7,7 +7,7 @@ mod day01;
 pub fn run(config: Config) -> Result<String, Box<dyn Error>> {
     match config.day.as_str() {
         "01a" => day01::run_a(&config.file_path),
-        "01b" => day01::run_a(&config.file_path),
+        "01b" => day01::run_b(&config.file_path),
         _ => Err(format!("Unrecognized command '{}'", &config.day))?
     }
 }
