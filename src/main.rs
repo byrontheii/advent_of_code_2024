@@ -1,14 +1,8 @@
 use std::{env, process};
-use advent_of_code_2024::Config;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-
-    let config = Config::new(args);
-
-    println!("running {}", config.day);
-    println!("On file {}", config.file_path);
-    let result = advent_of_code_2024::run(config);
+    let result = advent_of_code_2024::run(&args);
     match result {
         Ok(v) => {
             println!("Answer: {v}");
