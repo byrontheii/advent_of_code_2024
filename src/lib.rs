@@ -26,28 +26,6 @@ pub fn run(args: &Vec<String>) -> Result<String, Box<dyn Error>> {
     }
 }
 
-pub struct Config {
-    pub day: String,
-    pub part: String,
-    pub file_path: String,
-    pub args: Vec<String>,
-}
-
-impl Config {
-    pub fn new(args: Vec<String>) -> Config {
-        let ex = match args[2].as_str() {
-            "ex" => "_ex",
-            _ => "",
-        };
-        Config {
-            day: args[1].clone(),
-            part: args[2].clone(),
-            file_path: format!("data/{}{}.txt", args[1], ex),
-            args: args.into_iter().skip(3).collect(),
-        }
-    }
-}
-
 pub trait Runner {
     fn run_a(&self) -> Result<String, Box<dyn Error>>;
     fn run_b(&self) -> Result<String, Box<dyn Error>>;
