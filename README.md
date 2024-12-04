@@ -4,11 +4,17 @@ In Rust!
 
 ## Running Solutions
 
-Pass a day and an option to run.
+Pass a day, a part, and an optional data file suffix to run.
 
-Day is formatted like 01a or 01b, where a/b is for the first/second part.
+Day is a two-digit integer between 01 and 25.
 
-Option is ex or go for either running the example input or the actual input.
+Part is `a` or `b`.
 
-Example: `cargo run -- 01a ex`
-Actual: `cargo run -- 01a go`
+The data file path will be `data/XY.txt`, where `XY` is the day.
+If you include a suffix like `ex`, it will be appended after an underscore, such as `01_ex.txt`.
+
+Examples:
+
+`cargo run -- 01 a ex` will run the day 01 part a code on `data/01_ex.txt`
+
+`cargo run -- 01 b` will run the day 01 part b code on `data/01.txt`
