@@ -20,6 +20,19 @@ fn check_line(line: &str) -> i64 {
     sum
 }
 
+fn check_x(lines: &[&str], col: usize) -> bool {
+    let mut corners = String::new();
+    corners.push(lines[0].chars().nth(col).unwrap());
+    corners.push(lines[0].chars().nth(col + 2).unwrap());
+    corners.push(lines[2].chars().nth(col).unwrap());
+    corners.push(lines[2].chars().nth(col + 2).unwrap());
+    let center = lines[1].chars().nth(col + 1).unwrap();
+    println!("{corners}; {center}");
+    center == 'A' && (
+        corners == "MMSS" || corners == "MSMS" || corners == "SSMM" || corners == "SMSM"
+    )
+}
+
 impl super::Runner for Day04 {    
 
     fn run_a(&self) -> Result<String, Box<dyn error::Error>> {
@@ -70,8 +83,15 @@ impl super::Runner for Day04 {
 
     fn run_b(&self) -> Result<String, Box<dyn error::Error>> {
         let input = fs::read_to_string(&self.file_path).unwrap();
-        let sum = 0;
-        
+        let puzzle: Vec<&str> = input.lines().collect();
+        let mut sum = 0;
+        for row in 0..puzzle.len() - 2 {
+            for col in 0..puzzle[row].len() - 2 {
+                if check_x(&puzzle[row..], col) {
+                    sum += 1;
+                }
+            }
+        }
         Ok(sum.to_string())
     }
 
