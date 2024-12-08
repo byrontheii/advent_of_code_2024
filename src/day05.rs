@@ -2,7 +2,7 @@ use std::{cmp::Ordering, error, fs};
 use regex::Regex;
 use std::collections::HashMap;
 
-pub struct Day05 {
+pub struct Day {
     pub file_path: String
 }
 
@@ -28,7 +28,7 @@ fn new_center(list: &Vec<i32>, order_lt: &HashMap<i32, Vec<i32>>, order_gt: &Has
     sorted_list[sorted_list.len() / 2]
 }
 
-impl super::Runner for Day05 {    
+impl super::Runner for Day {    
 
     fn run_a(&self) -> Result<String, Box<dyn error::Error>> {
         let re_ord = Regex::new(r"([0-9]+)\|([0-9]+)").unwrap();

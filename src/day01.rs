@@ -13,11 +13,11 @@ fn get_pair(line: &str) -> Result<Vec<&str>, Box<dyn error::Error>> {
     }
 }
 
-pub struct Day01 {
+pub struct Day {
     pub file_path: String
 }
 
-impl Runner for Day01 {
+impl Runner for Day {
 
     fn run_a(&self) -> Result<String, Box<dyn error::Error>> {
         let mut ids0: BinaryHeap<u64> = BinaryHeap::new();

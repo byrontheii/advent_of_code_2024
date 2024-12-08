@@ -1,6 +1,6 @@
 use std::{collections::HashSet, error, fs};
 
-pub struct Day06 {
+pub struct Day {
     pub file_path: String
 }
 
@@ -91,7 +91,7 @@ fn has_loop(map: &Map, path: &mut Vec<(i32, i32, Direction)>) -> bool {
     
 }
 
-impl super::Runner for Day06 {    
+impl super::Runner for Day {    
 
     fn run_a(&self) -> Result<String, Box<dyn error::Error>> {
         let input = fs::read_to_string(&self.file_path).unwrap();

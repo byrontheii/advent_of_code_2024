@@ -1,11 +1,11 @@
 use std::{fs, error};
 use regex::Regex;
 
-pub struct Day03 {
+pub struct Day {
     pub file_path: String
 }
 
-impl super::Runner for Day03 {
+impl super::Runner for Day {
 
     fn run_a(&self) -> Result<String, Box<dyn error::Error>> {
         let input = fs::read_to_string(&self.file_path).unwrap();
