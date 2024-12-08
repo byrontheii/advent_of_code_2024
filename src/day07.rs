@@ -54,46 +54,47 @@ impl super::Runner for Day {
             let parts: Vec<&str> = line.split(':').collect();
             let correct_total: i64 = parts[0].parse().unwrap();
             let input_terms: Vec<&str> = parts[1].split_whitespace().collect();
-            for k in 0..2i64.pow((input_terms.len() - 1).try_into().unwrap()) {
-                //build terms
-                let mut current_term: String = String::from(input_terms[0]);
-                let mut terms: Vec<i64> = Vec::new();
-                for a in 1..input_terms.len() {
-                    let ath_bit = (k >> a-1) & 1;
-                    if ath_bit == 0 {
-                        //don't concat; parse the current string and push to the input terms 
-                        terms.push(current_term.parse().unwrap());
-                        current_term = String::from(input_terms[a]);
-                    }
-                    else {
-                        current_term.push_str(input_terms[a]);
-                    }
+            let terms: Vec<i64> = input_terms.iter().map(|t| t.parse().unwrap()).collect();
+            'concat_loop: for k_64 in 0..2i64.pow((terms.len() - 1).try_into().unwrap()) {
+                let k: usize = k_64.try_into().unwrap();
+                let mut num_concats = 0;
+                for x in 0..terms.len() - 1 {
+                    num_concats += (k >> x) & 1;
                 }
-                // push the final input term
-                terms.push(current_term.parse().unwrap());
-                println!("Considering {:?}", terms);
-                'op_loop: for i in 0..2i64.pow((terms.len() - 1).try_into().unwrap()) {
+                //build terms
+                let num_arith_ops: usize = terms.len() - 1 - num_concats;
+                'op_loop: for i in 0..2i64.pow(num_arith_ops.try_into().unwrap()) {
+                    let mut i_bits = i;
                     let mut current_total: i64 = terms[0];
-                    print!("{current_total} ");
+                    //print!("{current_total} ");
                     for j in 1..terms.len() {
-                        //determine the operator using i
-                        let jth_bit = (i >> (j-1)) & 1;
-                        //apply the operator to update the total
-                        if jth_bit == 0 {
-                            print!("+ {} ", terms[j]);
-                            current_total += terms[j];
+                        //determine the operator by looking at k and i bits
+                        if (k >> j-1) & 1 == 1 {
+                            // apply || operator
+                            //print!("|| {} ", terms[j]);
+                            let mut total_str = current_total.to_string();
+                            total_str.push_str(&input_terms[j]);
+                            current_total = total_str.parse().unwrap();
                         }
                         else {
-                            print!("* {} ", terms[j]);
-                            current_total *= terms[j];
+                            if i_bits & 1 == 0 {
+                                // apply + operator
+                                //print!("+ {} ", terms[j]);
+                                current_total += terms[j];
+                            }
+                            else {
+                                // apply * operator
+                                //print!("* {} ", terms[j]);
+                                current_total *= terms[j];
+                            }
+                            i_bits >>= 1;  // move to the next bit from the right
                         }
                         if current_total > correct_total {
-                            println!("CAN'T MATCH (too large)");
+                            //println!("CAN'T MATCH ({current_total} too large)");
                             continue 'op_loop;
-                        }
-        
+                        }        
                     }
-                    println!("= {current_total} vs {correct_total}");
+                    //println!("= {current_total} vs {correct_total}");
                     if current_total == correct_total {
                         println!("MATCH");
                         sum += correct_total;
