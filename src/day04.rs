@@ -1,6 +1,6 @@
 use std::{fs, error};
 
-pub struct Day04 {
+pub struct Day {
     pub file_path: String
 }
 
@@ -33,7 +33,7 @@ fn check_x(lines: &[&str], col: usize) -> bool {
     )
 }
 
-impl super::Runner for Day04 {    
+impl super::Runner for Day {    
 
     fn run_a(&self) -> Result<String, Box<dyn error::Error>> {
         let mut sum = 0;

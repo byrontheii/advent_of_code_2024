@@ -25,11 +25,11 @@ fn safe_when_dampened(levels: &Vec<i32>) -> bool {
     false
 }
 
-pub struct Day02 {
+pub struct Day {
     pub file_path: String
 }
 
-impl super::Runner for Day02 {
+impl super::Runner for Day {
 
     fn run_a(&self) -> Result<String, Box<dyn error::Error>> {
         let mut safe_count = 0;
