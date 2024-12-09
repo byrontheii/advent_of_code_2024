@@ -1,10 +1,10 @@
 use std::{error, fs};
 
-pub struct Day00 {
+pub struct Day {
     pub file_path: String
 }
 
-impl super::Runner for Day00 {    
+impl super::Runner for Day {    
 
     fn run_a(&self) -> Result<String, Box<dyn error::Error>> {
         let input = fs::read_to_string(&self.file_path).unwrap();
