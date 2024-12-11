@@ -1,4 +1,4 @@
-use std::{error, fs, str::FromStr};
+use std::{error, fs};
 
 pub struct Day {
     pub file_path: String
@@ -55,7 +55,7 @@ impl super::Runner for Day {
             let correct_total: i64 = parts[0].parse().unwrap();
             let input_terms: Vec<&str> = parts[1].split_whitespace().collect();
             let terms: Vec<i64> = input_terms.iter().map(|t| t.parse().unwrap()).collect();
-            'concat_loop: for k_64 in 0..2i64.pow((terms.len() - 1).try_into().unwrap()) {
+            for k_64 in 0..2i64.pow((terms.len() - 1).try_into().unwrap()) {
                 let k: usize = k_64.try_into().unwrap();
                 let mut num_concats = 0;
                 for x in 0..terms.len() - 1 {

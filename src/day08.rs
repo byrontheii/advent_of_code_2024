@@ -5,16 +5,13 @@ pub struct Day {
 }
 
 struct Loc {
-    antenna: Option<char>,
     antinode: bool,
-    row: isize,
-    col: isize,
 }
 
 impl Loc {
 
-    fn new(antenna: Option<char>, antinode: bool, row: isize, col: isize) -> Loc {
-        Loc{antenna, antinode, row, col}
+    fn new(antinode: bool) -> Loc {
+        Loc{antinode}
     }
 }
 
@@ -62,7 +59,7 @@ impl super::Runner for Day {
         for (row, line) in input.lines().enumerate() {
             let mut map_row: Vec<Loc> = Vec::new();
             for (col, ch) in line.chars().enumerate() {
-                map_row.push(Loc::new(if ch=='.' {None} else {Some(ch)}, false, row as isize, col as isize));
+                map_row.push(Loc::new(false));
                 if ch != '.' {
                     match antennas.get_mut(&ch) {
                         None => antennas.insert(ch, vec![(row as isize, col as isize)]),
@@ -101,7 +98,7 @@ impl super::Runner for Day {
         for (row, line) in input.lines().enumerate() {
             let mut map_row: Vec<Loc> = Vec::new();
             for (col, ch) in line.chars().enumerate() {
-                map_row.push(Loc::new(if ch=='.' {None} else {Some(ch)}, false, row as isize, col as isize));
+                map_row.push(Loc::new(false));
                 if ch != '.' {
                     match antennas.get_mut(&ch) {
                         None => antennas.insert(ch, vec![(row as isize, col as isize)]),
