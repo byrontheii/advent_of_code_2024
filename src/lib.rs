@@ -11,6 +11,7 @@ mod day06;
 mod day07;
 mod day08;
 mod day09;
+mod day10;
 
 fn make_path(args: &Vec<String>) -> String {
     format!("data/{}{}.txt", args[1], if args.len() >= 4 {format!("_{}", args[3])} else {"".to_string()})
@@ -27,6 +28,7 @@ pub fn run(args: &Vec<String>) -> Result<String, Box<dyn Error>> {
         "07" => Box::new(day07::Day{file_path: make_path(args)}),
         "08" => Box::new(day08::Day{file_path: make_path(args)}),
         "09" => Box::new(day09::Day{file_path: make_path(args)}),
+        "10" => Box::new(day10::Day{file_path: make_path(args)}),
         _ => Err(format!("Unrecognized command '{}'", args[1]))?
     };
     match args[2].as_str() {
