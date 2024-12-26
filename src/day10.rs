@@ -18,10 +18,6 @@ impl Direction {
             Direction::LEFT => None,
         }
     }
-
-    fn all() -> Vec<Direction> {
-        vec![Direction::UP, Direction::RIGHT, Direction::DOWN, Direction::LEFT]
-    }
 }
 
 struct Step {
@@ -52,10 +48,8 @@ impl Grid {
         let mut path = Vec::<Step>::new();
         let mut trail_ends = HashSet::<(usize, usize)>::new();
         path.push(Step{row, col, height: self.locs[row][col], dir: Direction::UP});
-        let mut iters = 0;
 
         loop {
-            iters += 1;
             if let Some(mut step) = path.pop() {
                 if step.height == 9 {
                     trail_ends.insert((step.row, step.col));
