@@ -66,7 +66,7 @@ impl super::Runner for Day {
                 button_b = (get_assignment(assigns[0], '+'), get_assignment(assigns[1], '+'));
             }
             if sentence[0].starts_with("Prize") {
-                prize = (get_assignment(assigns[0], '=') + OFFSET, get_assignment(assigns[1], '=') + OFFSET);
+                prize = (get_assignment(assigns[0], '='), get_assignment(assigns[1], '='));
                 machines.push(Machine { button_a, button_b, prize });
             }
         }
